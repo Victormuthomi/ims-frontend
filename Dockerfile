@@ -3,6 +3,7 @@ FROM node:18-alpine AS build
 WORKDIR /app
 
 COPY package.json package-lock.json ./
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm ci
 
 COPY . .
