@@ -6,10 +6,9 @@ ENV NODE_OPTIONS="--max-old-space-size=4096"
 RUN npm ci
 COPY . .
 RUN npm run build
-RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
-
 
 FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 8083
 CMD ["nginx", "-g", "daemon off;"]
+
