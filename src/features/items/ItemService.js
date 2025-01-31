@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://ims-r6pm.onrender.com/api/items";
+const API_URL = "http://194.195.215.228:8090/api/items";
 
 // Create new item
 const createItem = async (itemData, token) => {
@@ -29,7 +29,7 @@ const editItem = async (itemData, token) => {
   const response = await axios.put(
     `${API_URL}/${itemData._id}`,
     itemData,
-    config
+    config,
   );
   return response.data;
 };

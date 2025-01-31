@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://ims-r6pm.onrender.com/api/users";
+const API_URL = "http://194.195.215.228:8090/api/users";
 
 // Register user
 const register = async (userData) => {
