@@ -10,7 +10,6 @@ function Item() {
   const dispatch = useDispatch();
   const navigate = useNavigate(); // Initialize navigate
   const { items } = useSelector((state) => state.items);
-  console.log(getItems);
 
   useEffect(() => {
     dispatch(getItems()); // Fetch items when the component loads
@@ -27,38 +26,60 @@ function Item() {
   };
 
   return (
-    <section className="bg-white shadow-lg rounded-lg p-8 max-w-7xl w-full mb-8">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">Items</h2>
+    <section className="h-screen bg-gray-700 p-4">
+      <h2 className="text-2xl font-bold text-gray-800 mt-8 mb-8">Items</h2>
       {items.length === 0 ? (
         <p className="text-gray-600">No items to display</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-4 justify-start items-start bg-transparent h-[770px] w-[1700px] ml-20 pl-8 gap-8">
           {/* Display only the first 4 items or more if "Show More" is clicked */}
-          {items.slice(0, showMore ? items.length : 2).map((item) => (
+          {items.slice(0, showMore ? items.length : 8).map((item) => (
             <div
               key={item._id}
-              className="border bg-white rounded-lg shadow-lg p-4"
+              className="w-[350px] h-[300px] bg-slate-400 border rounded-lg"
             >
-              <div className="font-semibold text-lg">{item.name}</div>
-              <div className="text-gray-600">
-                Description: {item.description}
-              </div>
-              <div className="text-gray-600">SKU: {item.SKU}</div>
-              <div className="text-gray-600">Price: ${item.unitPrice}</div>
-              <div className="text-gray-600">Quantity: {item.quantity}</div>
+              <div className="pl-4 pt-4">
+                <div className="font-semibold text-center text-white text-lg">
+                  {item.name}
+                </div>
+                <div className="flex items-center space-x-2">
+                  <h1>Category:</h1>
+                  <p className="text-white">{item.category}</p>
+                </div>
 
-              <div className="flex space-x-4 mt-4">
+                <div className="flex items-center space-x-2">
+                  <h1>SKU:</h1>
+                  <p className="text-white">{item.SKU}</p>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <h1>Quantity:</h1>
+                  <p className="text-white">{item.quantity}</p>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <h1>Unit Price:</h1>
+                  <p className="text-white">{item.unitPrice}</p>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <h1>Description:</h1>
+                  <p className="text-white">{item.description}</p>
+                </div>
+              </div>
+
+              <div className=" flex items-center justify-center space-x-3 mt-4">
                 <button
                   onClick={() => handleEdit(item._id)} // Use the navigate function for edit
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded flex items-center"
+                  className="relative w-24 h-10 text-center text-base text-indigo-700 font-bold bg-green-400 hover:bg-green-200 transition-all duration-300 rounded-full"
                 >
-                  <FaEdit className="mr-2" /> Edit
+                  <FaEdit className="absolute ml-2" /> Edit
                 </button>
                 <button
                   onClick={() => dispatch(deleteItem(item._id))}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded flex items-center"
+                  className="relative w-28 h-10 text-base text-center text-indigo-700 font-bold bg-green-400 hover:bg-green-200 transition-all duration-300 rounded-full"
                 >
-                  <FaTrashAlt className="mr-2" /> Delete
+                  <FaTrashAlt className="absolute ml-2" /> Delete
                 </button>
               </div>
             </div>

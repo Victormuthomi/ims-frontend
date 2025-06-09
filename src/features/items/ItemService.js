@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://194.195.215.228:8090/api/items";
+const API_URL = "http://localhost:5000/api/items";
 
 // Create new item
 const createItem = async (itemData, token) => {

@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Calendar from "./calender.jsx";
 import SpiderChart from "./SpiderChart.jsx";
 import Linechart from "./LineChart.jsx";
 import Piechart from "./PieChart.jsx";
 import { FaRegUser } from "react-icons/fa";
 import { logout as logoutAction } from "../features/auth/authSlice";
+import { getItems } from "../features/items/itemSlice";
+import { useEffect } from "react";
 
 const DashboardC = () => {
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ const DashboardC = () => {
         <div>
           <ul className="text-white font-lato">
             {links?.map((link) => (
-              <li className="hover:bg-violet-600 active:bg-violet-700 border-t  p-4 w-full text-center p-4 cursor-pointer">
+              <li className="hover:bg-violet-600 active:bg-violet-700 border-t  p-4 w-full text-center p-4 cursor-pointer ">
                 <Link to={link.path} className="text-white">
                   {link.name}
                 </Link>

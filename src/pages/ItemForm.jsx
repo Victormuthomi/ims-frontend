@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function ItemForm() {
   const [name, setName] = useState("");
+  const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState(0);
   const [unitPrice, setUnitPrice] = useState(0);
   const [SKU, setSKU] = useState("");
@@ -20,10 +21,14 @@ function ItemForm() {
     e.preventDefault();
 
     // Dispatch the action to create the item
-    dispatch(createItem({ name, quantity, unitPrice, SKU, description }));
+    dispatch(
+      createItem({ name, category, quantity, unitPrice, SKU, description }),
+    );
+    navigate("/");
 
     // Clear form fields after submission
     setName("");
+    setCategory("");
     setQuantity(0);
     setUnitPrice(0);
     setSKU("");
@@ -40,7 +45,7 @@ function ItemForm() {
             htmlFor="name"
             className="block text-gray-700 font-medium mb-2"
           >
-            Name
+            Name A
           </label>
           <input
             type="text"
@@ -49,6 +54,24 @@ function ItemForm() {
             onChange={(e) => setName(e.target.value)}
             className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter item name"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
+          <label
+            htmlFor="category"
+            className="block text-gray-700 font-medium mb-2"
+          >
+            Category
+          </label>
+          <input
+            type="text"
+            id="category"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter item category"
             required
           />
         </div>
@@ -126,7 +149,7 @@ function ItemForm() {
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg"
         >
-          Submit
+          Add Item
         </button>
       </form>
     </section>
